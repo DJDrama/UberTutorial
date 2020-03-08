@@ -352,12 +352,21 @@ private extension HomeController{
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 2000, longitudinalMeters: 2000)
         mapView.setRegion(region, animated: true)
     }
+    
+    func setCustomRegion(withCoordinates coordinates: CLLocationCoordinate2D){
+        let region = CLCircularRegion(center: coordinates, radius: 25, identifier: "pickup")
+        locationManager?.startMonitoring(for: region)
+    }
 }
 
 //MARK: - MKMapViewDelegate
 extension HomeController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        print("DEBUG: Did update user location..")
+        guard let user = self.user else { return }
+        guard user.accountType == .driver else { return }
+        guard let location = userLocation.location else { return }
+        Service.shared.updateDriverLocation(location: location)
+        
     }
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? DriverAnnotation {
@@ -380,7 +389,11 @@ extension HomeController: MKMapViewDelegate {
 }
 
 //MARK: - LocationServices
-extension HomeController{
+extension HomeController: CLLocationManagerDelegate{
+    func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
+        print("DEBUG: Did start monitoring for region \(region)")
+    }
+    
     func enableLocationServices(){
         switch CLLocationManager.authorizationStatus() {
         case .notDetermined:
@@ -512,6 +525,8 @@ extension HomeController: PickupControllerDelegate {
         mapView.addAnnotation(anno)
         mapView.selectAnnotation(anno, animated: true)
         
+        setCustomRegion(withCoordinates: trip.pickupCoordinates)
+        
         let placemark = MKPlacemark(coordinate: trip.pickupCoordinates)
         let mapItem = MKMapItem(placemark: placemark)
         generatePolyline(toDestination: mapItem)
@@ -525,6 +540,10 @@ extension HomeController: PickupControllerDelegate {
             self.centerMapOnUserLocation()
             self.presentAlertController(withTitle: "Ooops!",withMessage: "The passenger has decided to cancel this ride. Press OK to continue.")
         }
+        
+        
+        
+        
         
         self.dismiss(animated: true) {
             Service.shared.fetchUserData(uid: trip.passengerUid) { passenger in
