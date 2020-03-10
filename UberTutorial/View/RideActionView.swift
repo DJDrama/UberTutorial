@@ -13,6 +13,7 @@ protocol RideActionViewDelegate: class{
     func uploadTrip(_ view: RideActionView)
     func cancelTrip()
     func pickupPassenger()
+    func dropOffPassenger()
 }
 
 enum RideActionViewConfiguration {
@@ -170,9 +171,9 @@ class RideActionView: UIView {
         case .getDirections:
             print("DEBUG: Handle getDirections..")
         case .pickup:
-            delegate?.pickupPassenger()            
+            delegate?.pickupPassenger()
         case .dropOff:
-            print("DEBUG: Handle dropOff..")
+            delegate?.dropOffPassenger()
         }
     }
     
@@ -221,7 +222,7 @@ class RideActionView: UIView {
                 actionButton.setTitle(buttonAction.description, for: .normal)
             }
             titleLabel.text = "EN Route To Destination"
-            break
+           
         case .endTrip:
             guard let user = user else {return}
             if user.accountType == .driver {
@@ -231,7 +232,7 @@ class RideActionView: UIView {
                 buttonAction = .dropOff
                 actionButton.setTitle(buttonAction.description, for: .normal)
             }
-            break
+            titleLabel.text = "Arrived at Destination"
         }
     }
 }
