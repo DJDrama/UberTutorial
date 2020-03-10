@@ -11,6 +11,7 @@ import CoreLocation
 enum TripState: Int {
     case requested
     case accepted
+    case driverArrived
     case inProgress
     case completed
 }
@@ -42,7 +43,6 @@ struct Trip {
         
         if let state = dictionary["state"] as? Int {
             self.state = TripState(rawValue: state)
-            
         }
     }
 }

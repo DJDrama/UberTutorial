@@ -12,11 +12,13 @@ import MapKit
 protocol RideActionViewDelegate: class{
     func uploadTrip(_ view: RideActionView)
     func cancelTrip()
+    func pickupPassenger()
 }
 
 enum RideActionViewConfiguration {
     case requestRide
     case tripAccepted
+    case driverArrived
     case pickupPassenger
     case tripInProgress
     case endTrip
@@ -60,8 +62,14 @@ class RideActionView: UIView {
             addressLabel.text = destination?.address
         }
     }
-    var config =  RideActionViewConfiguration()
+    
     var buttonAction = ButtonAction()
+    
+    var config =  RideActionViewConfiguration(){
+        didSet {
+            configureUI(withConfig: config)
+        }
+    }
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -162,7 +170,7 @@ class RideActionView: UIView {
         case .getDirections:
             print("DEBUG: Handle getDirections..")
         case .pickup:
-            print("DEBUG: Handle pickup..")
+            delegate?.pickupPassenger()            
         case .dropOff:
             print("DEBUG: Handle dropOff..")
         }
@@ -188,7 +196,15 @@ class RideActionView: UIView {
             
             infoViewLabel.text = String(user.fullName.first ?? "X")
             uberInfoLabel.text = user.fullName
-            break
+
+        case .driverArrived :
+            guard let user = user else { return }
+            if user.accountType == .driver {
+                titleLabel.text = "Driver Has Arrived."
+                addressLabel.text = "Please meet driver at pickup location"
+            }
+            
+            
         case .pickupPassenger: //only for driver
             titleLabel.text  = "Arrvied At Passenger Location"
             buttonAction = .pickup

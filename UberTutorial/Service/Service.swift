@@ -20,6 +20,7 @@ struct Service {
     
     static let shared = Service()
     
+
     func fetchUserData(uid: String, completion: @escaping(User) -> Void) {
         REF_USERS.child(uid).observeSingleEvent(of: .value){ (snapshot) in //observe only once
             guard let dictionary = snapshot.value as? [String: Any] else {return}
@@ -31,10 +32,9 @@ struct Service {
     
     func fetchDrivers(location: CLLocation, completion: @escaping(User) -> Void) {
         let geofire = GeoFire(firebaseRef: REF_DRIVER_LOCATIONS)
+        
         REF_DRIVER_LOCATIONS.observe(.value){ snapshot in //keep observe
-            print("DEBUG: Come location? \(location)")
             geofire.query(at: location, withRadius: 5000).observe(.keyEntered, with: { (uid, location) in
-
                 self.fetchUserData(uid: uid) { (user) in
                     var driver = user
                     driver.location = location
@@ -99,5 +99,9 @@ struct Service {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let geofire = GeoFire(firebaseRef: REF_DRIVER_LOCATIONS)
         geofire.setLocation(location, forKey: uid)
+    }
+    
+    func updateTripState(trip: Trip, state: TripState, completion: @escaping(Error?, DatabaseReference) -> Void){
+        REF_TRIPS.child(trip.passengerUid).child("state").setValue(state.rawValue, withCompletionBlock: completion)
     }
 }
