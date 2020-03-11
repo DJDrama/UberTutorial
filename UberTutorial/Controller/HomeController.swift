@@ -48,7 +48,7 @@ class HomeController: UIViewController{
     weak var delegate: HomeControllerDelegate?
    
     
-    private var user: User? {
+    var user: User? {
         didSet {
             locationInputView.user = user
             if user?.accountType == .passenger {
@@ -224,12 +224,7 @@ class HomeController: UIViewController{
         }
     }
     
-    func fetchUserData(){
-        guard let currentUid = Auth.auth().currentUser?.uid else {return}
-        Service.shared.fetchUserData(uid: currentUid){ user in
-            self.user = user
-        }
-    }
+    
     
     func signOut(){
         do {
@@ -247,7 +242,7 @@ class HomeController: UIViewController{
     //MARK: - Helper Functions
     func configure() {
         configureUI()
-        fetchUserData()
+       
     }
     fileprivate func configureActionButton(config: ActionButtonConfiguration) {
         switch config {
