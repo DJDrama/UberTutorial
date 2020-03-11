@@ -42,7 +42,7 @@ class MenuHeader: UIView {
         backgroundColor = .backgroundColor
         
         addSubview(profileImageView)
-        profileImageView.anchor(top: topAnchor, left: leftAnchor, paddingTop: 4, paddingLeft: 12, width: 64, height: 64)
+        profileImageView.anchor(top: safeAreaLayoutGuide.topAnchor, left: leftAnchor, paddingTop: 4, paddingLeft: 12, width: 64, height: 64)
         profileImageView.layer.cornerRadius = 64/2
         
         let stack = UIStackView(arrangedSubviews: [fullnameLabel, emailLabel])
