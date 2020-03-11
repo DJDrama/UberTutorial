@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		13E0A242E4FD1A48F017EDA9 /* Pods_UberTutorial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC14525804FAB40A625898A0 /* Pods_UberTutorial.framework */; };
 		2207110C24025B4B004E19CA /* PickupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207110B24025B4B004E19CA /* PickupController.swift */; };
+		22315D712418B79400EF5B65 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22315D702418B79400EF5B65 /* MenuController.swift */; };
+		22315D732418B7AB00EF5B65 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22315D722418B7AB00EF5B65 /* ContainerController.swift */; };
 		2274D08A23F4F9CB00482CBD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2274D08923F4F9CB00482CBD /* AppDelegate.swift */; };
 		2274D08C23F4F9CB00482CBD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2274D08B23F4F9CB00482CBD /* SceneDelegate.swift */; };
 		2274D09123F4F9CB00482CBD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2274D08F23F4F9CB00482CBD /* Main.storyboard */; };
@@ -33,6 +35,8 @@
 
 /* Begin PBXFileReference section */
 		2207110B24025B4B004E19CA /* PickupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupController.swift; sourceTree = "<group>"; };
+		22315D702418B79400EF5B65 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		22315D722418B7AB00EF5B65 /* ContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
 		2274D08623F4F9CB00482CBD /* UberTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2274D08923F4F9CB00482CBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2274D08B23F4F9CB00482CBD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +82,24 @@
 				CC14525804FAB40A625898A0 /* Pods_UberTutorial.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		22315D6E2418B75F00EF5B65 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				2274D0A323F4FC0900482CBD /* LoginController.swift */,
+				2274D0A723F53C9200482CBD /* SignUpController.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		22315D6F2418B77900EF5B65 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				22315D702418B79400EF5B65 /* MenuController.swift */,
+				22315D722418B7AB00EF5B65 /* ContainerController.swift */,
+			);
+			path = SideMenu;
 			sourceTree = "<group>";
 		};
 		2274D07D23F4F9CB00482CBD = {
@@ -137,8 +159,8 @@
 		2274D0A023F4FA0B00482CBD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2274D0A323F4FC0900482CBD /* LoginController.swift */,
-				2274D0A723F53C9200482CBD /* SignUpController.swift */,
+				22315D6F2418B77900EF5B65 /* SideMenu */,
+				22315D6E2418B75F00EF5B65 /* Authentication */,
 				2274D0AD23F64DB500482CBD /* HomeController.swift */,
 				2207110B24025B4B004E19CA /* PickupController.swift */,
 			);
@@ -302,7 +324,9 @@
 				2274D08A23F4F9CB00482CBD /* AppDelegate.swift in Sources */,
 				2274D0A423F4FC0900482CBD /* LoginController.swift in Sources */,
 				2274D0B423F67B0100482CBD /* LocationCell.swift in Sources */,
+				22315D712418B79400EF5B65 /* MenuController.swift in Sources */,
 				22BF1D9B23F9B90E000EBAD7 /* LocationHandler.swift in Sources */,
+				22315D732418B7AB00EF5B65 /* ContainerController.swift in Sources */,
 				2274D08C23F4F9CB00482CBD /* SceneDelegate.swift in Sources */,
 				22A08EDD23FFD39600CB4AAE /* RideActionView.swift in Sources */,
 				22BF1D9923F9B312000EBAD7 /* User.swift in Sources */,
