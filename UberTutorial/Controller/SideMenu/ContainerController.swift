@@ -23,7 +23,7 @@ class ContainerController: UIViewController {
         didSet {
             guard let user = user else { return }
             homeController.user = user
-             configureMenuController(withUser: user)
+            configureMenuController(withUser: user)
         }
     }
     
@@ -114,11 +114,11 @@ class ContainerController: UIViewController {
     }
     
     func animateMenu(shouldExpand: Bool, completion: ((Bool)->Void)? = nil){
-
+        
         if shouldExpand {
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 self.homeController.view.frame.origin.x = self.xOrigin
-                                self.blackView.alpha = 1
+                self.blackView.alpha = 1
             }, completion: nil)
         }else{
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
@@ -151,19 +151,24 @@ extension ContainerController: MenuControllerDelegate {
         isExpanded.toggle()
         animateMenu(shouldExpand: isExpanded) { (_) in
             switch option {
-                      case .yourTrips:
-                          break
-                      case .settings:
-                          break
-                      case .logout:
-                          let alert = UIAlertController(title: nil, message: "Are you sure you want to log out?", preferredStyle: .actionSheet)
-                          alert.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (_) in  //destructive --> red
-                              self.signOut()
-                          }))
-                          alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-                          
-                          self.present(alert, animated:true, completion: nil)
-                      }
+            case .yourTrips:
+                break
+            case .settings:
+                guard let user = self.user else { return }
+                let controller = SettingsController(user: user)
+                let nav = UINavigationController(rootViewController: controller)
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true, completion: nil)
+                
+            case .logout:
+                let alert = UIAlertController(title: nil, message: "Are you sure you want to log out?", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (_) in  //destructive --> red
+                    self.signOut()
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                
+                self.present(alert, animated:true, completion: nil)
+            }
         }
     }
 }

@@ -55,9 +55,7 @@ class PickupController: UIViewController {
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
-        super.viewDidLoad()
-        print("DEBUG: Trip passenger uid is \(trip.passengerUid)")
-        
+        super.viewDidLoad()        
         configureUI()
         configureMapView()
     }
