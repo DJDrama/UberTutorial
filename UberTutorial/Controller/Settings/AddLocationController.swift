@@ -10,8 +10,13 @@ import UIKit
 import MapKit
 
 private let reuseIdentifier =  "cell"
+
+protocol AddLocationControllerDelegate: class {
+    func updateLocation(locationString: String, type: LocationType)
+}
 class AddLocationController: UITableViewController{
     // MARK: - Properties
+    weak var delegate: AddLocationControllerDelegate?
     private let searchBar = UISearchBar()
     private let searchCompleter = MKLocalSearchCompleter()
     private var searchResults = [MKLocalSearchCompletion](){
@@ -75,13 +80,21 @@ extension AddLocationController {
         cell.detailTextLabel?.text=result.subtitle
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let result = searchResults[indexPath.row]
+        let locationString = result.title + " " + result.subtitle
+        delegate?.updateLocation(locationString: locationString, type: type)
+    }
 }
+
 // MARK: - UISearchBarDelegate
 extension AddLocationController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchCompleter.queryFragment = searchText
     }
 }
+
 // MARK: - MKLocalSearchCompleterDelegate
 extension AddLocationController: MKLocalSearchCompleterDelegate {
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {

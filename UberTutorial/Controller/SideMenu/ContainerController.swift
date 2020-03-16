@@ -137,6 +137,14 @@ class ContainerController: UIViewController {
     }
 }
 
+// MARK: - SettingsControllerDelegate
+extension ContainerController: SettingsControllerDelegate{
+    func updateUser(_ controller: SettingsController) {
+        self.user = controller.user
+    }
+    
+}
+
 // MARK: - HomeControllerDelegate
 extension ContainerController: HomeControllerDelegate{
     func handleMenuToggle() {
@@ -156,6 +164,8 @@ extension ContainerController: MenuControllerDelegate {
             case .settings:
                 guard let user = self.user else { return }
                 let controller = SettingsController(user: user)
+                controller.delegate=self
+                
                 let nav = UINavigationController(rootViewController: controller)
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: true, completion: nil)
