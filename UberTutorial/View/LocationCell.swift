@@ -17,12 +17,20 @@ class LocationCell: UITableViewCell {
             addressLabel.text = placemark?.address
         }
     }
-    private let titleLabel: UILabel = {
+    
+    var type: LocationType? {
+        didSet{
+            titleLabel.text = type?.description
+            addressLabel.text = type?.subtitle
+        }
+    }
+    
+    let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()
-    private let addressLabel: UILabel = {
+    let addressLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .lightGray
