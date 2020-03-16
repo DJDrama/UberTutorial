@@ -31,6 +31,7 @@
 		22BB2574241E338E00D65CF5 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB2573241E338E00D65CF5 /* SettingsController.swift */; };
 		22BB2576241E38D500D65CF5 /* UserInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB2575241E38D500D65CF5 /* UserInfoHeader.swift */; };
 		22BB2579241F0DF000D65CF5 /* AddLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB2578241F0DF000D65CF5 /* AddLocationController.swift */; };
+		22BB257B241F53EF00D65CF5 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB257A241F53EF00D65CF5 /* CircularProgressView.swift */; };
 		22BF1D9723F9AC1A000EBAD7 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BF1D9623F9AC1A000EBAD7 /* Service.swift */; };
 		22BF1D9923F9B312000EBAD7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BF1D9823F9B312000EBAD7 /* User.swift */; };
 		22BF1D9B23F9B90E000EBAD7 /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BF1D9A23F9B90E000EBAD7 /* LocationHandler.swift */; };
@@ -63,6 +64,7 @@
 		22BB2573241E338E00D65CF5 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		22BB2575241E38D500D65CF5 /* UserInfoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoHeader.swift; sourceTree = "<group>"; };
 		22BB2578241F0DF000D65CF5 /* AddLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationController.swift; sourceTree = "<group>"; };
+		22BB257A241F53EF00D65CF5 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		22BF1D9623F9AC1A000EBAD7 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		22BF1D9823F9B312000EBAD7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		22BF1D9A23F9B90E000EBAD7 /* LocationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHandler.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				22A08EDC23FFD39600CB4AAE /* RideActionView.swift */,
 				22315D742418BE4A00EF5B65 /* MenuHeader.swift */,
 				22BB2575241E38D500D65CF5 /* UserInfoHeader.swift */,
+				22BB257A241F53EF00D65CF5 /* CircularProgressView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				2207110C24025B4B004E19CA /* PickupController.swift in Sources */,
 				22BF1D9D23F9C11B000EBAD7 /* DriverAnnotation.swift in Sources */,
 				2274D08A23F4F9CB00482CBD /* AppDelegate.swift in Sources */,
+				22BB257B241F53EF00D65CF5 /* CircularProgressView.swift in Sources */,
 				2274D0A423F4FC0900482CBD /* LoginController.swift in Sources */,
 				22BB2579241F0DF000D65CF5 /* AddLocationController.swift in Sources */,
 				2274D0B423F67B0100482CBD /* LocationCell.swift in Sources */,
