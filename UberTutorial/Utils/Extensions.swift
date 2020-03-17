@@ -15,6 +15,9 @@ extension UIColor {
     
     static let backgroundColor = UIColor.rgb(red: 25, green: 25, blue: 25)
     static let mainBlueTint = UIColor.rgb(red: 17, green: 154, blue: 237)
+    static let outlineStrokeColor = UIColor.rgb(red: 234, green: 46, blue: 111)
+    static let trackStrokeColor = UIColor.rgb(red: 56, green: 25, blue: 49)
+    static let pulsatingFillColor = UIColor.rgb(red: 86 , green: 30, blue: 63)
     
 }
 extension UIView {
@@ -26,7 +29,7 @@ extension UIView {
         imageView.image = image
         imageView.alpha = 0.87
         view.addSubview(imageView)
-       
+        
         
         if let textField = textField {
             imageView.centerY(inView: view)
@@ -37,7 +40,7 @@ extension UIView {
             textField.anchor(left: imageView.rightAnchor, bottom: view.bottomAnchor, right: view.rightAnchor,
                              paddingLeft: 8, paddingBottom: 8)
         }
-    
+        
         if let sc = segmentedControl {
             imageView.anchor(top: view.topAnchor, left: view.leftAnchor, paddingTop: -8, paddingLeft: 8, width: 24, height: 24)
             view.addSubview(sc)
@@ -215,6 +218,6 @@ extension UIViewController {
                 }
             }
         }
-    
+        
     }
 }

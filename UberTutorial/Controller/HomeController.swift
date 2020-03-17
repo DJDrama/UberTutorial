@@ -123,6 +123,15 @@ class HomeController: UIViewController{
                 
             case .requested:
                 break
+            case .denied:
+                self.shouldPresentLoadingView(false)
+                self.presentAlertController(withTitle: "Ooops", withMessage: "It looks like we couldn't find a driver. Please try again..")
+                PassengerService.shared.deleteTrip { (error, ref) in
+                    self.centerMapOnUserLocation()
+                    self.configureActionButton(config: .showMenu)
+                    self.locationInputActivationView.alpha = 1
+                    self.removeAnnotationAndOverlays()
+                }
             case .accepted:
                 self.shouldPresentLoadingView(false)
                 self.removeAnnotationAndOverlays()
